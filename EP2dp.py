@@ -13,42 +13,39 @@ def transforma_base(questions):
     return questions_by_level
 
 def valida_questao(questao):
-    d = {}
+    resultado = {}
 
     if 'titulo' not in questao:
-        d['titulo'] = 'nao_encontrado'
+        resultado['titulo'] = 'nao_encontrado'
     elif not questao['titulo'].strip():
-        d['titulo'] = 'vazio'
+        resultado['titulo'] = 'vazio'
     
     if 'nivel' not in questao:
-        d['nivel'] = 'nao_encontrado'
+        resultado['nivel'] = 'nao_encontrado'
     elif questao['nivel'] not in {'facil', 'medio', 'dificil'}:
-        d['nivel'] = 'valor_errado'
+        resultado['nivel'] = 'valor_errado'
 
-    
     if 'opcoes' not in questao:
-        d['opcoes'] = 'nao_encontrado'
+        resultado['opcoes'] = 'nao_encontrado'
     elif len(questao['opcoes']) != 4:
-        d['opcoes'] = 'tamanho_invalido'
+        resultado['opcoes'] = 'tamanho_invalido'
     else:
-        d2 = {}
+        opcoes_invalidas = {}
         for opcao in 'ABCD':
             if opcao not in questao['opcoes']:
-                d2[opcao] = 'chave_invalida_ou_nao_encontrada'
+                opcoes_invalidas[opcao] = 'chave_invalida_ou_nao_encontrada'
             elif not questao['opcoes'][opcao].strip():
-                d2[opcao] = 'vazia'
+                opcoes_invalidas[opcao] = 'vazia'
 
-        if d2:
-            d['opcoes'] = d2
+        if opcoes_invalidas:
+            resultado['opcoes'] = opcoes_invalidas
 
-    
     if 'correta' not in questao:
-        d['correta'] = 'nao_encontrado'
+        resultado['correta'] = 'nao_encontrado'
     elif questao['correta'] not in 'ABCD':
-        d['correta'] = 'valor_errado'
+        resultado['correta'] = 'valor_errado'
 
-    
     if len(questao) != 4:
-        d['outro'] = 'numero_chaves_invalido'
+        resultado['outro'] = 'numero_chaves_invalido'
 
-    return d
+    return resultado
