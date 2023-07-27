@@ -79,3 +79,12 @@ def sorteia_questao(dic_nivel,nivel):
 
     return random.choice(questao)
 
+def sorteia_questao_inedita(dic, nivel, questoes_sorteadas):
+    questao_sorteada = sorteia_questao(dic, nivel)
+
+    for questao_sorteada in questoes_sorteadas:
+        questao_sorteada = sorteia_questao(dic, nivel)
+
+    questoes_sorteadas.append(questao_sorteada)
+
+    return questao_sorteada
