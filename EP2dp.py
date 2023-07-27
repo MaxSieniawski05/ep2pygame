@@ -49,3 +49,23 @@ def valida_questao(questao):
         resultado['outro'] = 'numero_chaves_invalido'
 
     return resultado
+
+
+
+def valida_questoes(lista_questoes):
+
+    lista_nova = []
+
+    for questao in lista_questoes:
+
+        questao_valida = valida_questao(questao)
+
+        if len(questao_valida) > 0:
+
+            lista_nova.append(questao_valida)
+
+        else:
+
+            lista_nova.append({})
+
+    return lista_nova
