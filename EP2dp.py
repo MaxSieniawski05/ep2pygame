@@ -69,3 +69,13 @@ def valida_questoes(lista_questoes):
             lista_nova.append({})
 
     return lista_nova
+
+
+
+import random
+
+def sorteia_questao(dic_nivel,nivel): 
+    questao = dic_nivel[nivel]
+
+    return random.choice(questao)
+
