@@ -88,37 +88,3 @@ def sorteia_questao_inedita(dic, nivel, questoes_sorteadas):
     questoes_sorteadas.append(questao_sorteada)
 
     return questao_sorteada
-
-
-def questao_para_texto(dicio_da_questao, ide):
-    print(f'----------------------------------------')
-    print(f'QUESTAO {ide}')
-    
-    titulo = dicio_da_questao['titulo']
-    print(f'\n{titulo}\n')
-    
-    opcoes = dicio_da_questao['opcoes']
-    print('RESPOSTAS:')
-    
-    for letra, resposta in opcoes.items():
-        print(f'{letra}: {resposta}')
-        
-    return ''
-
-import random
-def gera_ajuda(dicionario):
-    lista_vazia=[]
-    certa = dicionario['correta']
-    for letraquestao in dicionario['opcoes']:
-        if letraquestao != certa:
-            lista_vazia.append(dicionario['opcoes'][letraquestao])
-
-    dicas = random.randint(1,2)
-    if dicas == 1:
-        sorteia = random.choice(lista_vazia)
-        return f'DICA:\nOpções certamente erradas: {sorteia}'
-    if dicas == 2:
-        sorteia1 = random.choice(lista_vazia)
-        lista_vazia.remove(sorteia1)
-        sorteia2 = random.choice(lista_vazia)
-        return f'DICA:\nOpções certamente erradas: {sorteia1}|{sorteia2}'
