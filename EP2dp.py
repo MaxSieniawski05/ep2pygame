@@ -90,7 +90,7 @@ def sorteia_questao_inedita(dic, nivel, questoes_sorteadas):
     return questao_sorteada
 
 
-def questao_para_texto(dicio_da_questao, ide):
+'''def questao_para_texto(dicio_da_questao, ide):
     print(f'----------------------------------------')
     print(f'QUESTAO {ide}')
     
@@ -103,4 +103,21 @@ def questao_para_texto(dicio_da_questao, ide):
     for letra, resposta in opcoes.items():
         print(f'{letra}: {resposta}')
         
-    return ''
+    return '''' 
+
+
+
+def questao_para_texto(dicio_da_questao, ide):
+    formatada = '----------------------------------------\n'
+    formatada += f'QUESTAO {ide}\n\n'
+    
+    titulo = dicio_da_questao['titulo']
+    formatada += f'{titulo}\n\n'
+    
+    formatada += 'RESPOSTAS:'
+    
+    opcoes = dicio_da_questao['opcoes']
+    for letra, resposta in opcoes.items():
+        formatada += f'\n{letra}: {resposta}'
+        
+    return formatada
