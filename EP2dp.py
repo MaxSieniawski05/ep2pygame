@@ -307,13 +307,11 @@ quest = [{'titulo': 'Qual o resultado da operação 57 + 32?',
         ]
 
 
-
-print('Olá! Você está na Fortuna DesSoft e terá a oportunidade de enriquecer!')
-nome_do_jogador = input("qual é o seu nome?")
-print(f'Ok {nome_do_jogador}, você tem direito a pular 3 vezes e 2 ajudas!')                          
-print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "parar"!')     
-
-
+while True:
+    print('Olá! Você está na Fortuna DesSoft e terá a oportunidade de enriquecer!')
+    nome_do_jogador = input("qual é o seu nome?")
+    print(f'Ok {nome_do_jogador}, você tem direito a pular 3 vezes e 2 ajudas!')                          
+    print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "parar"!')     
 
 
 
@@ -322,19 +320,147 @@ print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "parar
 
 
 
-questoes = transforma_base(quest)  
-numero = 1 
-
-sorteadas = []
-nivel = "facil"
-jogando = True
-while jogando :
 
 
-    questao = sorteia_questao_inedita(questoes,nivel,sorteadas)
+    questoes = transforma_base(quest) 
+    numero = 1 
 
-    transformatexto = questao_para_texto(questao,numero)
+    sorteadas = []
+    nivel = "facil"
+    jogando = True
+    lp = [1000,
+5000,
+10000,
+30000,
+50000,
+100000,
+300000,
+500000,
+1000000]
+    contapulos = 3 
+    contajuda = 2 
+    contacertos = 0
 
-    print(transformatexto)
+    while True:
 
+
+        questao = sorteia_questao_inedita(questoes,nivel,sorteadas)
+
+        transformatexto = questao_para_texto(questao,numero)
+
+        certo = questao['correta']
+
+        while True:
+
+            r = input('qual letra você escolhe para essa questão ?')
+
+            if r not in ['A','B','C','D','ajuda','pular','sair']:
+                print('Não aceito isso como resposta!')
+            
+            else:
+                break 
+        premio = 0 
+        if r == certo:
+
+            contacertos += 1 
+            numero += 1 
+
+            print('PARABÉNS VOCÊ ACERTOU :)')
+
+            for i in range(len(lp)):
+                k = lp[i]
+                premio = k
+                del(lp[i])
+
+                if premio == 1000000:
+                    print('PARABÉNS VOCÊ GANHOU :)')
+                    break 
+                break
+
+
+            print(f'Você obteve de dinheiro {premio}')
+            continue
+
+        if r != certo: 
+
+            if r == 'ajuda':
+                while contajuda > 0:
+                    contajuda  = -1 
+
+
+                    print(f'Ok, vou te ajudar porém lembre-se você só tem {contajuda} ajudas')
+
+                    print('Aperte ENTER para continuar...')
+
+
+                    continuar = input('Aperte ENTER para continuar')
+
+
+                
+
+                    r = input('Qual a sua resposta?!')
+
+
+
+
+        
+                    if contajuda == 0: 
+                        print('voce errou, acabou suas ajudas !')
+                        print('Aperte ENTER para continuar...')
+
+                        continuar = input('Aperte ENTER para continuar')
+
+                        r = input('Qual a sua resposta?!')
+
+               
+
+
+                
+
+
+
+    
+            elif r == 'pular': 
+
+                while contapulos > 0:
+
+                    contapulos -= 1
+
+                    print(f'Ok, vou pulat essa questão porém lembre-se te restam {contapulos} pulos')
+
+                    print('Aperte ENTER para continuar...')
+
+                    questao = sorteia_questao_inedita(questoes,nivel,sorteadas)
+                    transformatexto = questao_para_texto(questao,numero)
+
+
+                    r = input('Qual sua resposta')
+
+
+                    continue
+
+            
+                if contapulos == 0: 
+                    print('Acabou os seus pulos!')
+                    print('Aperte ENTER para continuar...')
+
+                    continuar = input('Aperte ENTER caso queira continuar')
+
+                    r = input('Qual sua resposta')
+            
+
+            elif r == "sair":
+                print(f'Os seus ganhos foram de {k}')
+                break 
+            else:
+                print('Você perdeu tudo, não ganha nada!')
+                break 
+        
+        
+
+
+        
+
+
+            
 
