@@ -306,21 +306,21 @@ quest = [{'titulo': 'Qual o resultado da operação 57 + 32?',
           'correta': 'D'}
         ]
 
- 
-print('Olá! Você está na Fortuna DesSoft e terá a oportunidade de enriquecer!')
-nome_do_jogador = input("Qual é o seu nome?")
-print(f'Ok {nome_do_jogador}, você tem direito a pular 3 vezes e 2 ajudas!')
-print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "sair"!')
-
-lp = [1000, 5000, 10000, 30000, 50000, 100000, 300000, 500000, 1000000]
-contapulos = 3
-contajuda = 2
-contacertos = 0
-numero = 1
-sorteadas = []
-nivel = "facil"
 
 while True:
+
+    print('Olá! Você está na Fortuna DesSoft e terá a oportunidade de enriquecer!')
+    nome_do_jogador = input("Qual é o seu nome?")
+    print(f'Ok {nome_do_jogador}, você tem direito a pular 3 vezes e 2 ajudas!')
+    print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "sair"!')
+
+    lp = [1000, 5000, 10000, 30000, 50000, 100000, 300000, 500000, 1000000]
+    contapulos = 3
+    contajuda = 2
+    contacertos = 0
+    numero = 1
+    sorteadas = []
+    nivel = "facil"
     questoes = transforma_base(quest) # Supondo que quest seja uma lista de questões
     questao = sorteia_questao_inedita(questoes, nivel, sorteadas)
     transformatexto = questao_para_texto(questao, numero)
