@@ -350,6 +350,8 @@ while True:
 
         certo = questao['correta']
 
+        print(transformatexto)
+
         while True:
 
             r = input('qual letra você escolhe para essa questão ?')
@@ -394,6 +396,7 @@ while True:
 
 
                     continuar = input('Aperte ENTER para continuar')
+                    print(gera_ajuda(questao))
 
 
                 
@@ -410,7 +413,11 @@ while True:
 
                         continuar = input('Aperte ENTER para continuar')
 
+                        print(transformatexto)
+
                         r = input('Qual a sua resposta?!')
+
+                        break 
 
                
 
@@ -433,6 +440,8 @@ while True:
                     questao = sorteia_questao_inedita(questoes,nivel,sorteadas)
                     transformatexto = questao_para_texto(questao,numero)
 
+                    print(transformatexto)
+
 
                     r = input('Qual sua resposta')
 
@@ -445,6 +454,7 @@ while True:
                     print('Aperte ENTER para continuar...')
 
                     continuar = input('Aperte ENTER caso queira continuar')
+                    print(transformatexto)
 
                     r = input('Qual sua resposta')
             
