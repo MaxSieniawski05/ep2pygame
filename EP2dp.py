@@ -306,25 +306,13 @@ quest = [{'titulo': 'Qual o resultado da operação 57 + 32?',
           'correta': 'D'}
         ]
 
-
+print('Olá! Você está na Fortuna DesSoft e terá a oportunidade de enriquecer!')
+nome_do_jogador = input("qual é o seu nome?")
+print(f'Ok {nome_do_jogador}, você tem direito a pular 3 vezes e 2 ajudas!')                          
+print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "parar"!')  
 while True:
-    print('Olá! Você está na Fortuna DesSoft e terá a oportunidade de enriquecer!')
-    nome_do_jogador = input("qual é o seu nome?")
-    print(f'Ok {nome_do_jogador}, você tem direito a pular 3 vezes e 2 ajudas!')                          
-    print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "parar"!')     
-
-
-
-
-
-
-
-
-
-
     questoes = transforma_base(quest) 
     numero = 1 
-
     sorteadas = []
     nivel = "facil"
     jogando = True
@@ -340,9 +328,7 @@ while True:
     contapulos = 3 
     contajuda = 2 
     contacertos = 0
-
     while True:
-
 
         questao = sorteia_questao_inedita(questoes,nivel,sorteadas)
 
