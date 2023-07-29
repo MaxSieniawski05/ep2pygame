@@ -342,7 +342,7 @@ while True:
         contacertos += 1
         numero += 1
 
-        print('PARABÉNS VOCÊ ACERTOU :)')
+        
 
         if len(lp) > 0:
             premio = lp.pop(0)
@@ -371,7 +371,7 @@ while True:
         else:
             print('Você perdeu tudo, não ganha nada!')
             break
-        
+
         
 
 
