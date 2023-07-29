@@ -306,151 +306,71 @@ quest = [{'titulo': 'Qual o resultado da operação 57 + 32?',
           'correta': 'D'}
         ]
 
+ 
 print('Olá! Você está na Fortuna DesSoft e terá a oportunidade de enriquecer!')
-nome_do_jogador = input("qual é o seu nome?")
-print(f'Ok {nome_do_jogador}, você tem direito a pular 3 vezes e 2 ajudas!')                          
-print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "parar"!')  
+nome_do_jogador = input("Qual é o seu nome?")
+print(f'Ok {nome_do_jogador}, você tem direito a pular 3 vezes e 2 ajudas!')
+print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "sair"!')
+
+lp = [1000, 5000, 10000, 30000, 50000, 100000, 300000, 500000, 1000000]
+contapulos = 3
+contajuda = 2
+contacertos = 0
+numero = 1
+sorteadas = []
+nivel = "facil"
+
 while True:
-    questoes = transforma_base(quest) 
-    numero = 1 
-    sorteadas = []
-    nivel = "facil"
-    jogando = True
-    lp = [1000,
-5000,
-10000,
-30000,
-50000,
-100000,
-300000,
-500000,
-1000000]
-    contapulos = 3 
-    contajuda = 2 
-    contacertos = 0
+    questoes = transforma_base(quest) # Supondo que quest seja uma lista de questões
+    questao = sorteia_questao_inedita(questoes, nivel, sorteadas)
+    transformatexto = questao_para_texto(questao, numero)
+    certo = questao['correta']
+
+    print(transformatexto)
+
     while True:
+        r = input('Qual letra você escolhe para essa questão? ')
 
-        questao = sorteia_questao_inedita(questoes,nivel,sorteadas)
+        if r not in ['A', 'B', 'C', 'D', 'ajuda', 'pular', 'sair']:
+            print('Não aceito isso como resposta!')
+        else:
+            break
 
-        transformatexto = questao_para_texto(questao,numero)
+    premio = 0
 
-        certo = questao['correta']
+    if r == certo:
+        contacertos += 1
+        numero += 1
 
-        print(transformatexto)
+        print('PARABÉNS VOCÊ ACERTOU :)')
 
-        while True:
+        if len(lp) > 0:
+            premio = lp.pop(0)
 
-            r = input('qual letra você escolhe para essa questão ?')
-
-            if r not in ['A','B','C','D','ajuda','pular','sair']:
-                print('Não aceito isso como resposta!')
-            
-            else:
-                break 
-        premio = 0 
-        if r == certo:
-
-            contacertos += 1 
-            numero += 1 
-
-            print('PARABÉNS VOCÊ ACERTOU :)')
-
-            for i in range(len(lp)):
-                k = lp[i]
-                premio = k
-                del(lp[i])
-
-                if premio == 1000000:
-                    print('PARABÉNS VOCÊ GANHOU :)')
-                    break 
+            if premio == 1000000:
+                print('PARABÉNS VOCÊ GANHOU :)')
+                print(f'Você obteve de dinheiro {premio}')
                 break
-
-
-            print(f'Você obteve de dinheiro {premio}')
-            continue
-
-        if r != certo: 
-
-            if r == 'ajuda':
-                while contajuda > 0:
-                    contajuda  = -1 
-
-
-                    print(f'Ok, vou te ajudar porém lembre-se você só tem {contajuda} ajudas')
-
-                    print('Aperte ENTER para continuar...')
-
-
-                    continuar = input('Aperte ENTER para continuar')
-                    print(gera_ajuda(questao))
-
-
-                
-
-                    r = input('Qual a sua resposta?!')
-
-
-
-
-        
-                    if contajuda == 0: 
-                        print('voce errou, acabou suas ajudas !')
-                        print('Aperte ENTER para continuar...')
-
-                        continuar = input('Aperte ENTER para continuar')
-
-                        print(transformatexto)
-
-                        r = input('Qual a sua resposta?!')
-
-                        break 
-
-               
-
-
-                
-
-
-
-    
-            elif r == 'pular': 
-
-                while contapulos > 0:
-
-                    contapulos -= 1
-
-                    print(f'Ok, vou pulat essa questão porém lembre-se te restam {contapulos} pulos')
-
-                    print('Aperte ENTER para continuar...')
-
-                    questao = sorteia_questao_inedita(questoes,nivel,sorteadas)
-                    transformatexto = questao_para_texto(questao,numero)
-
-                    print(transformatexto)
-
-
-                    r = input('Qual sua resposta')
-
-
-                    continue
-
-            
-                if contapulos == 0: 
-                    print('Acabou os seus pulos!')
-                    print('Aperte ENTER para continuar...')
-
-                    continuar = input('Aperte ENTER caso queira continuar')
-                    print(transformatexto)
-
-                    r = input('Qual sua resposta')
-            
-
-            elif r == "sair":
-                print(f'Os seus ganhos foram de {k}')
-                break 
             else:
-                print('Você perdeu tudo, não ganha nada!')
-                break 
+                print(f'Você obteve de dinheiro {premio}')
+        else:
+            print('Você ganhou todas as perguntas disponíveis! Parabéns!')
+            break
+    else:
+        if r == 'ajuda' and contajuda > 0:
+            contajuda -= 1
+            print(f'Ok, vou te ajudar porém lembre-se você só tem {contajuda} ajudas')
+            print(gera_ajuda(questao))
+            r = input('Qual a sua resposta? ')
+        elif r == 'pular' and contapulos > 0:
+            contapulos -= 1
+            print(f'Ok, vou pular essa questão porém lembre-se te restam {contapulos} pulos')
+        elif r == "sair":
+            print(f'Os seus ganhos foram de {sum(lp)}')
+            break
+        else:
+            print('Você perdeu tudo, não ganha nada!')
+            break
         
         
 
